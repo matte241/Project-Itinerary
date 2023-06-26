@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Information</title>
+    <script>
+        function updateTime() {
+            var currentTimeElement = document.getElementById('current-time');
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+            currentTimeElement.textContent = timeString;
+        }
+
+        setInterval(updateTime, 60000);  // Update time every minute
+    </script>
+</head>
+<body>
+    <h1>Arrivals</h1>
+    <ul>
+        {% for arrival in arrivals %}
+        <li>
+            <strong>Flight Number:</strong> {{ arrival[0] }}<br>
+            <strong>Origin:</strong> {{ arrival[1] }}<br>
+            <strong>Destination:</strong> {{ arrival[2] }}<br>
+            <strong>Status:</strong> {{ arrival[3] }}<br>
+            <strong>Arrival Time:</strong> {{ arrival[4] }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Departures</h1>
+    <ul>
+        {% for departure in departures %}
+        <li>
+            <strong>Flight Number:</strong> {{ departure[0] }}<br>
+            <strong>Origin:</strong> {{ departure[1] }}<br>
+            <strong>Destination:</strong> {{ departure[2] }}<br>
+            <strong>Status:</strong> {{ departure[3] }}<br>
+            <strong>Departure Time:</strong> {{ departure[4] }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p>Current Time: <span id="current-time">{{ current_time }}</span></p>
+</body>
+</html>
