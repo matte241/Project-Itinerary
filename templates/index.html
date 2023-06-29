@@ -1,18 +1,72 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Flight Information</title>
-    <script>
-        function updateTime() {
-            var currentTimeElement = document.getElementById('current-time');
-            var now = new Date();
-            var hours = now.getHours();
-            var minutes = now.getMinutes();
-            var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
-            currentTimeElement.textContent = timeString;
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
         }
 
-        setInterval(updateTime, 60000);  // Update time every minute
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        li strong {
+            font-weight: bold;
+        }
+
+        .board-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .board-container .board {
+            flex-basis: 48%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .current-time {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function updateTime() {
+        var currentTimeElement = document.getElementById('current-time');
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Handle midnight
+        var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ' ' + ampm;
+        currentTimeElement.textContent = timeString;
+    }
+
+    setInterval(updateTime, 60000);  // Update time every minute
     </script>
 </head>
 <body>
@@ -20,11 +74,10 @@
     <ul>
         {% for arrival in arrivals %}
         <li>
-            <strong>Flight Number:</strong> {{ arrival[0] }}<br>
-            <strong>Origin:</strong> {{ arrival[1] }}<br>
-            <strong>Destination:</strong> {{ arrival[2] }}<br>
-            <strong>Status:</strong> {{ arrival[3] }}<br>
-            <strong>Arrival Time:</strong> {{ arrival[4] }}
+            <strong>Flight Number:</strong> {{ arrival['Flight'] }}<br>
+            <strong>Origin:</strong> {{ arrival['Origin'] }}<br>
+            <strong>Status:</strong> {{ arrival['Status'] }}<br>
+            <strong>Arrival Time:</strong> {{ arrival['Time'] }}
         </li>
         {% endfor %}
     </ul>
@@ -33,11 +86,10 @@
     <ul>
         {% for departure in departures %}
         <li>
-            <strong>Flight Number:</strong> {{ departure[0] }}<br>
-            <strong>Origin:</strong> {{ departure[1] }}<br>
-            <strong>Destination:</strong> {{ departure[2] }}<br>
-            <strong>Status:</strong> {{ departure[3] }}<br>
-            <strong>Departure Time:</strong> {{ departure[4] }}
+            <strong>Flight Number:</strong> {{ departure['Flight'] }}<br>
+            <strong>Destination:</strong> {{ departure['Destination'] }}<br>
+            <strong>Status:</strong> {{ departure['Status'] }}<br>
+            <strong>Departure Time:</strong> {{ departure['Time'] }}
         </li>
         {% endfor %}
     </ul>
