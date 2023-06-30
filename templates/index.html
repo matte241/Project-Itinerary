@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flight Information</title>
+    <title>Flight Board</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,30 +70,38 @@
     </script>
 </head>
 <body>
-    <h1>Arrivals</h1>
+    <h1>Welcome to {{ airport_code }}</h1>	
+
+    <p><span id="current-time">{{ current_time }}</span></p>
+	
+    <h2>Arrivals</h2>
     <ul>
         {% for arrival in arrivals %}
         <li>
+	    <strong>Airline:</strong> {{ arrival['Airline'] }}<br>
             <strong>Flight Number:</strong> {{ arrival['Flight'] }}<br>
             <strong>Origin:</strong> {{ arrival['Origin'] }}<br>
             <strong>Status:</strong> {{ arrival['Status'] }}<br>
-            <strong>Arrival Time:</strong> {{ arrival['Time'] }}
+            <strong>Arrival Time:</strong> {{ arrival['Time'] }}<br>
+	    <strong>Gate:</strong> {{ arrival['Gate'] }}
         </li>
         {% endfor %}
     </ul>
 
-    <h1>Departures</h1>
+    <h2>Departures</h2>
     <ul>
         {% for departure in departures %}
         <li>
+	    <strong>Airline:</strong> {{ departure['Airline'] }}<br>
             <strong>Flight Number:</strong> {{ departure['Flight'] }}<br>
             <strong>Destination:</strong> {{ departure['Destination'] }}<br>
             <strong>Status:</strong> {{ departure['Status'] }}<br>
-            <strong>Departure Time:</strong> {{ departure['Time'] }}
+            <strong>Departure Time:</strong> {{ departure['Time'] }}<br>
+	    <strong>Gate:</strong> {{ departure['Gate'] }}
         </li>
         {% endfor %}
     </ul>
 
-    <p>Current Time: <span id="current-time">{{ current_time }}</span></p>
+
 </body>
 </html>
