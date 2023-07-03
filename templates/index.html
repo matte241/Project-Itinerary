@@ -4,89 +4,106 @@
 <head>
     <title>Flight Board</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
+    /* CSS styles for table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: white; /* Set text color to white */
+    }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    th {
+        background-color: black;
+        font-weight: bold;
+        color: yellow; /* Set column name font color to yellow */
+    }
 
-        li {
-            padding: 10px;
-            background-color: #fff;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-        }
+    tr:nth-child(even) {
+        background-color: #213f5e; /* Dark blue */
+    }
 
-        li strong {
-            font-weight: bold;
-        }
+    tr:nth-child(odd) {
+        background-color: #2c5373; /* Slightly dark blue */
+    }
 
-        .board-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    body {
+        background-color: black; /* Set body background color to black */
+    }
 
-        .board-container .board {
-            flex-basis: 48%;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            padding: 20px;
-        }
+    h1 {
+        color: white; /* Set color of "Welcome" heading to white */
+    }
 
-        .current-time {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
+    #time {
+        color: white; !important /* Set color of the time element to white */
+    }
+
+    h2 {
+	color: white; /* 'Arrival' and 'Departure' to White
+
+</style>
    
 </head>
 <body>
     <h1>Welcome to {{ airport_code }}</h1>	
 
-    <p><span id="current-time">{{ current_time }}</span></p>
+    <p><span id="current-time" style="color: white;">{{ current_time }}</span></p>
 	
     <h2>Arrivals</h2>
-    <ul>
-        {% for arrival in arrivals %}
-        <li>
-	    <strong>Airline:</strong> {{ arrival['Airline'] }}<br>
-            <strong>Flight Number:</strong> {{ arrival['Flight'] }}<br>
-            <strong>Origin:</strong> {{ arrival['Origin'] }}<br>
-            <strong>Status:</strong> {{ arrival['Status'] }}<br>
-            <strong>Arrival Time:</strong> {{ arrival['Time'] }}<br>
-	    <strong>Gate:</strong> {{ arrival['Gate'] }}
-        </li>
-        {% endfor %}
-    </ul>
+    <table id="arrivals-board">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Airline</th>
+                <th>Flight</th>
+                <th>Time</th>
+                <th>Gate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arrival in arrivals %}
+            <tr>
+                <td>{{ arrival['Origin'] }}</td>
+                <td>{{ arrival['Airline'] }}</td>
+                <td>{{ arrival['Flight'] }}</td>
+                <td>{{ arrival['Time'] }}</td>
+                <td>{{ arrival['Gate'] }}</td>
+                <td>{{ arrival['Status'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <h2>Departures</h2>
-    <ul>
-        {% for departure in departures %}
-        <li>
-	    <strong>Airline:</strong> {{ departure['Airline'] }}<br>
-            <strong>Flight Number:</strong> {{ departure['Flight'] }}<br>
-            <strong>Destination:</strong> {{ departure['Destination'] }}<br>
-            <strong>Status:</strong> {{ departure['Status'] }}<br>
-            <strong>Departure Time:</strong> {{ departure['Time'] }}<br>
-	    <strong>Gate:</strong> {{ departure['Gate'] }}
-        </li>
-        {% endfor %}
-    </ul>
+    <table id="departures-board">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Airline</th>
+                <th>Flight</th>
+                <th>Time</th>
+                <th>Gate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for departure in departures %}
+            <tr>
+                <td>{{ departure['Destination'] }}</td>
+                <td>{{ departure['Airline'] }}</td>
+                <td>{{ departure['Flight'] }}</td>
+                <td>{{ departure['Time'] }}</td>
+                <td>{{ departure['Gate'] }}</td>
+                <td>{{ departure['Status'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 <script>
     // Reload the page every 60 seconds
