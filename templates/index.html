@@ -1,58 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Flight Board</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            padding: 10px;
-            background-color: #fff;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-        }
-
-        li strong {
-            font-weight: bold;
-        }
-
-        .board-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .board-container .board {
-            flex-basis: 48%;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            padding: 20px;
-        }
-
-        .current-time {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
     <!DOCTYPE html>
+
 <html>
 <head>
     <title>Flight Board</title>
@@ -106,21 +53,7 @@
             font-weight: bold;
         }
     </style>
-    <script>
-        function updateTime() {
-        var currentTimeElement = document.getElementById('current-time');
-        var now = new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // Handle midnight
-        var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ' ' + ampm;
-        currentTimeElement.textContent = timeString;
-    }
-
-    setInterval(updateTime, 60000);  // Update time every minute
-    </script>
+   
 </head>
 <body>
     <h1>Welcome to {{ airport_code }}</h1>	
@@ -154,6 +87,13 @@
         </li>
         {% endfor %}
     </ul>
+
+<script>
+    // Reload the page every 60 seconds
+    setTimeout(function() {
+        location.reload();
+    }, 60000);
+</script>
 
 
 </body>
