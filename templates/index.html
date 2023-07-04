@@ -4,11 +4,11 @@
 <head>
     <title>Flight Board</title>
     <style>
-    /* CSS styles for table */
+    
     table {
         width: 100%;
         border-collapse: collapse;
-        color: white; /* Set text color to white */
+        color: white; 
     }
 
     th, td {
@@ -31,15 +31,20 @@
     }
 
     body {
-        background-color: black; /* Set body background color to black */
+        background-color: black; 
     }
 
     h1 {
         color: white; /* Set color of "Welcome" heading to white */
     }
 
-    #time {
-        color: white; !important /* Set color of the time element to white */
+    #current-time {
+        color: white; /* Set color of the time element to white */
+        font-size: 26px; 
+        font-family: "DS-Digital", "Digital", monospace; /* will use first font available */
+	position: absolute; 
+        top: 10px; 
+        right: 10px;
     }
 
     h2 {
@@ -51,7 +56,7 @@
 <body>
     <h1>Welcome to {{ airport_code }}</h1>	
 
-    <p><span id="current-time" style="color: white;">{{ current_time }}</span></p>
+    <p><span id="current-time">{{ current_time }}</span></p>
 	
     <h2>Arrivals</h2>
     <table id="arrivals-board">
