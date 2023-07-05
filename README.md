@@ -7,3 +7,5 @@ Furthermore, the code goes a step further by extending the visibility of each fl
 By combining a vast dataset, real-time comparisons, and extended visibility, the code offers a comprehensive flight board experience that allows users to explore historical flight data and stay updated on the status of arrivals and departures from thirteen years ago.
 
 The framework for the project is in Project Itinerary. App.py and index.html house the scripts that broadcast to the webpage.
+
+*** ACCESS THE FLIGHT BOARD HERE: http://127.0.0.1:8000/ ***
